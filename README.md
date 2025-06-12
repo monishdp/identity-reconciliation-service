@@ -1,11 +1,10 @@
-// filepath: README.md
 # Bitespeed Backend Task: Identity Reconciliation
 
-This repository contains a solution for the Bitespeed Backend Task: Identity Reconciliation.
+A RESTful API service that identifies and consolidates customer contact information across multiple purchases with different email addresses and phone numbers.
 
 ## Live Demo
 
-API Endpoint: [https://identity-reconciliation-service.onrender.com/identify](https://identity-reconciliation-service.onrender.com/identify)
+API Endpoint: [https://identity-reconciliation-service-71ak.onrender.com/identify](https://identity-reconciliation-service-71ak.onrender.com/identify)
 
 ## Overview
 
@@ -16,8 +15,6 @@ This service provides an endpoint `/identify` that helps track customer identiti
 - Node.js with TypeScript
 - Express.js
 - PostgreSQL
-- TypeORM
-- Docker (optional)
 
 ## Installation and Setup
 
@@ -30,8 +27,8 @@ This service provides an endpoint `/identify` that helps track customer identiti
 
 1. Clone the repository
    ```bash
-   git clone <repository-url>
-   cd identity-reconciliation
+   git clone https://github.com/monishdp/identity-reconciliation-service.git
+   cd identity-reconciliation-service
    ```
 
 2. Install dependencies
