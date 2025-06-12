@@ -10,15 +10,20 @@ if (!databaseUrl) {
   process.exit(1);
 }
 
+// Configure PostgreSQL pool with proper SSL settings for Render
 const pool = new Pool({
   connectionString: databaseUrl,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+  ssl: {
+    rejectUnauthorized: false // This is required for Render PostgreSQL
+  }
 });
 
 // Function to initialize the database with the Contact table
 export async function initializeDatabase() {
   try {
     console.log('Attempting to connect to database...');
+    console.log(`Using DATABASE_URL: ${databaseUrl.replace(/:[^:]*@/, ':****@')}`); // Log URL with password redacted
+    
     // Test the connection first
     const client = await pool.connect();
     console.log('Database connection successful');
