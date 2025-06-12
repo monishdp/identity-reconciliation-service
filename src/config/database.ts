@@ -3,13 +3,27 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const databaseUrl = process.env.DATABASE_URL;
+
+if (!databaseUrl) {
+  console.error('DATABASE_URL environment variable not set');
+  process.exit(1);
+}
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: databaseUrl,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
 // Function to initialize the database with the Contact table
 export async function initializeDatabase() {
   try {
+    console.log('Attempting to connect to database...');
+    // Test the connection first
+    const client = await pool.connect();
+    console.log('Database connection successful');
+    client.release();
+    
     await pool.query(`
       CREATE TABLE IF NOT EXISTS contacts (
         id SERIAL PRIMARY KEY,
