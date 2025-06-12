@@ -10,11 +10,10 @@ if (!databaseUrl) {
   process.exit(1);
 }
 
-// Configure PostgreSQL pool with proper SSL settings for Render
 const pool = new Pool({
   connectionString: databaseUrl,
   ssl: {
-    rejectUnauthorized: false // This is required for Render PostgreSQL
+    rejectUnauthorized: false 
   }
 });
 
@@ -22,7 +21,8 @@ const pool = new Pool({
 export async function initializeDatabase() {
   try {
     console.log('Attempting to connect to database...');
-    console.log(`Using DATABASE_URL: ${databaseUrl.replace(/:[^:]*@/, ':****@')}`); // Log URL with password redacted
+    const maskedUrl = databaseUrl!.replace(/:[^:]*@/, ':****@'); 
+    console.log(`Using DATABASE_URL: ${maskedUrl}`); // Log URL with password redacted
     
     // Test the connection first
     const client = await pool.connect();
