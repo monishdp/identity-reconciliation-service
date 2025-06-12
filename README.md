@@ -5,6 +5,7 @@ A RESTful API service that identifies and consolidates customer contact informat
 ## Live Demo
 
 API Endpoint: https://identity-reconciliation-service-71ak.onrender.com/identify
+Base URL: https://identity-reconciliation-service-71ak.onrender.com/
 
 ## Overview
 
